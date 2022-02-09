@@ -1,9 +1,11 @@
-import sys
-import os
-import configparser
-import rps
+from os import path
+from rps import play
+from colorama import Fore, init, Style
+from configparser import ConfigParser
+from platform import python_version, system
 
-config = configparser.ConfigParser()
+init()
+config = ConfigParser()
 config.read('settings.ini')
 
 
@@ -12,7 +14,9 @@ commands = ['toggle_nonstop',
             'currentdatacolor',
             'game',
             'changecharttype',
-            'currentcharttype']
+            'currentcharttype',
+            'isitnonstop',
+            'resetsettings']
 
 chart_types = ['bar',
                'dots',
@@ -20,77 +24,113 @@ chart_types = ['bar',
                'stem',
                'step']
 
+# Colorama Variables
+
+r = Fore.RESET
+bright = Style.BRIGHT
+critical = Fore.RED + bright 
+success = Fore.GREEN + bright
+info = Fore.CYAN + bright
+conf = Fore.YELLOW + bright
 
 # Commands
 
 def nonstop_toggle():
-    if os.path.exists('./settings.ini'):
-        toggle = input("Turn on nonstop? (y/n)\n")
-        if toggle.lower() == 'y':
+    if path.exists('./settings.ini'):
+        print(conf + 'Turn on nonstop? (y/n)' + r)
+        toggle = input().lower()
+        if toggle == 'y':
             config.set('RPS', 'nonstop', 'True')
             with open ('settings.ini', 'w') as settingsfile:
                 config.write(settingsfile)
-                print('Nonstop set to True')
-        elif toggle.lower() == 'n':
+                print(success +'Nonstop set to True' + r)
+        elif toggle == 'n':
             config.set('RPS', 'nonstop', 'False')
             with open ('settings.ini', 'w') as settingsfile:
                 config.write(settingsfile)
-                print('Nonstop set to False')
-        elif toggle.lower() == 'exit':
+                print(success + 'Nonstop set to False' + r)
+        elif toggle == 'exit':
             return
         else:
-            print('Invalid option.')
+            print(critical +  + 'Invalid option.')
     else:
-        print('Cannot find settings.ini file')
+        print(critical + 'Couldn\'t find settings.ini file' + r)
 
 def changedatacolor():
-    if os.path.exists('./settings.ini'):
+    if path.exists('./settings.ini'):
         datachartcolor = input("Type a name of color or hex code of a color.\n")
         if datachartcolor == "exit":
             return
         elif datachartcolor == '':
-            print('Data color cannot be null.')
+            print(critical + 'Data color cannot be null.' + r)
         else:
             config.set('Chart', 'datachartcolor', datachartcolor)
             with open ('settings.ini', 'w') as settingsfile:
                 config.write(settingsfile)
-                print('Bar color updated successfully.')
+                print(success + 'Bar color updated successfully.' + r)
     else:
-        print('Cannot find settings.ini file')
+        print(critical + 'Couldn\'t find settings.ini file' + r)
 
 def currentdatacolor():
-    if os.path.exists('./settings.ini'):
+    if path.exists('./settings.ini'):
         print(config.get('Chart', 'datachartcolor'))
     else:
-        print('Cannot find settings.ini file')
+        print(critical + 'Couldn\'t find settings.ini file' + r)
 
 def game():
-    rps.play()
+    play()
 
 
 def currentcharttype():
-    if os.path.exists('./settings.ini'):
+    if path.exists('./settings.ini'):
         print(config.get('Chart', 'chart_type'))
     else:
-        print('Cannot find settings.ini file')
+        print(critical + 'Couldn\'t find settings.ini file' + r)
 
 def changecharttype():
-    if os.path.exists('./settings.ini'):
+    if path.exists('./settings.ini'):
         charttype = input("Type a chart type (bar, plot, dots, step, stem)\n")
         if charttype == 'exit':
             return
         elif charttype not in chart_types:
-            print(f"A chart type \"{charttype}\" doesn't exist.")
+            print(critical + f"A chart type \"{charttype}\" doesn't exist." + r)
         elif charttype == '':
-            print('Chart type cannot be null.')
+            print(critical + 'Chart type cannot be null.' + r)
         else:
             config.set('Chart', 'chart_type', charttype)
             with open('settings.ini', 'w') as settingsfile:
                 config.write(settingsfile)
-                print('Chart type updated successfully.')
-        
+                print(success + 'Chart type updated successfully.' + r)
     else:
-        print('Cannot find settings.ini file')
+        print(critical + 'Couldn\'t find settings.ini file' + r)
+        
+def isitnonstop():
+    if path.exists('./settings.ini'):
+        isitnonstop = config.get('RPS', 'nonstop')
+        if isitnonstop == 'False':
+            print("No")
+        elif isitnonstop == 'True':
+            print("Yes")
+        else:
+            print("Unknown")
+    else:
+        print(critical + 'Couldn\'t find settings.ini file' + r)
+
+def resetsettings():
+    if path.exists('./settings.ini'):
+        print(conf + 'Are you sure? (y/n)' + r)
+        confirm = input()
+        if confirm == "y" or confirm == "Y":
+            config.set('Chart', 'chart_type', 'bar')
+            config.set('Chart', 'datachartcolor', 'dodgerblue')
+            config.set('RPS', 'nonstop', 'False')
+            with open('settings.ini', 'w') as settingsfile:
+                config.write(settingsfile)
+                print(success + 'Settings reset successfully.' + r)
+        else:
+            return
+    else:
+        print(critical + 'Couldn\'t find settings.ini file' + r)
 
 # Commands with help
 
@@ -121,6 +161,7 @@ def changecharttype_help():
 def currentcharttype_help():
     print("Usage: rps currentcharttype \n")
     print("Description: Returns the current chart type.")
+    
 # Main cmd
 
 def cmd():
@@ -132,6 +173,8 @@ def cmd():
           - game
           - changecharttype
           - currentcharttype
+          - isitnonstop
+          - resetsettings
           
           Type \"rps <command>\" to get started with the command.
           or type \"rps usage <command>\" to see the usage and description of a command.""")
@@ -144,7 +187,10 @@ def cmd():
             cmd()
         elif com == 'game':
             game()
-
+        elif com == 'python_version':
+            print(python_version())
+        elif com == 'system':
+            print(system())
 
 # Calling commands
 
@@ -160,6 +206,10 @@ def cmd():
             changecharttype()
         elif com == "rps " + commands[5]:
             currentcharttype()
+        elif com == "rps " + commands[6]:
+            isitnonstop()
+        elif com == "rps " + commands[7]:
+            resetsettings()
         
 # Calling commands with usage argument
         

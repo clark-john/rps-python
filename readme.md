@@ -7,12 +7,12 @@ And you can also play with it.
 To run this game, you can clone the repository by typing this in the command line: `git clone <this-repository>`
 
 After cloning the repo, please run the **index.py** file first, otherwise it won't work. <br>
-Now you choose between these options below:
+Now you choose between these options below: <br>
 <img src="/img/indexpy.PNG" /> <br>
 
 **y/n** (yes or no) or **cmds** for special commands.
 
-If you choose **y/n**: It will prompt you first to type the name of your AI/Computer player, you can type "***none***" to skip. And after typing the name, the game will start.
+If you choose **y/n**: It will prompt you first to type the name of your AI/Computer player, you can type "***none***" or press _Enter_ to skip. And after typing the name, the game will start.
 
 ## What *Python* modules do you use?
 These are the **Python** modules that I used:
@@ -21,7 +21,9 @@ These are the **Python** modules that I used:
 + configparser
 + random
 + datetime
-+ matplotlib (this is required to be installed to display scoreboard)
++ matplotlib (this is required to display scoreboard)
++ colorama
++ platform
 
 #### Purposes of these modules?
 + os - checking if the *settings.ini* file exists
@@ -30,6 +32,8 @@ These are the **Python** modules that I used:
 + random - randomizing actions
 + datetime - returning date and time
 + matplotlib - display scoreboard
++ colorama - colorize the terminal
++ platform - displaying system info and **Python** version
 
 ## Documentation
 Coming Soon:)
