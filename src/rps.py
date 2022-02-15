@@ -4,14 +4,16 @@ from random import choice
 from sys import exit
 from datetime import datetime
 from colorama import Style, Fore, init
+from os import system
+from console_colors import consolecolor
 
 init()
 
 def play():
     # Adds parser and reads the settings file
     config = ConfigParser()
-    config.read('settings.ini')
-    
+    config.read('./settings.ini')
+
     # Declares the user and comp's score as well as the tie and total no. of games data
     user_score = 0
     comp_score = 0
@@ -35,7 +37,7 @@ def play():
     charttype = config.get('Chart','chart_type')
         
     if nonstop == "True":
-        print(success + "\nYou can now stop the game by typing \'stop\' while the game plays.\n" + r)
+        print(success + "\nYou can now stop the game by typing \'stop\' while the game plays.\n"+consolecolor)
     
     compname = input("Enter the name of your player, or type \"none\" to skip.\nType \"cancel\" or \"exit\" to terminate this program.\n").lower()
     if compname == "cancel" or compname == "exit":
@@ -50,13 +52,13 @@ def play():
         
         if user_action not in possible_actions \
             and not user_action == 'stop':
-            print(critical + "Invalid option. Try again." + r)
+            print(critical + "Invalid option. Try again.")
             continue
     
         if user_action == computer_actions:
             print("You choose", user_action.lower())
             print(compname, "chooses", computer_actions)
-            print(yellow + "It's a tie" + r)
+            print(yellow + "It's a tie"+consolecolor)
             tie += 1
             total_games += 1    
         
@@ -65,13 +67,13 @@ def play():
             if computer_actions == 'scissors':
                 print("You choose paper")
                 print(compname, "chooses", computer_actions)
-                print(dim + "Scissors win! You Lose." + r)
+                print(dim + "Scissors win! You Lose.")
                 comp_score += 1
                 total_games += 1
             else:
                 print("You choose paper")
                 print(compname, "chooses", computer_actions)
-                print(bright + "Paper wins! You Won." + r)
+                print(bright + "Paper wins! You Won.")
                 user_score += 1
                 total_games += 1
         
@@ -80,14 +82,14 @@ def play():
             if computer_actions == 'paper':
                 print("You choose rock")
                 print(compname, "chooses", computer_actions)
-                print(dim + "Paper wins! You Lose." + r)
+                print(dim + "Paper wins! You Lose.")
                 comp_score += 1
                 total_games += 1
                 
             else:
                 print("You choose rock")
                 print(compname, "chooses", computer_actions)
-                print(bright + "Rock wins! You Won." + r)
+                print(bright + "Rock wins! You Won.")
                 user_score += 1 
                 total_games += 1
 
@@ -96,13 +98,13 @@ def play():
             if computer_actions == 'paper':
                 print("You choose scissors")
                 print(compname, "chooses", computer_actions)
-                print(bright + "Scissors win! You Won." + r)
+                print(bright + "Scissors win! You Won.")
                 user_score += 1 
                 total_games += 1
             else:
                 print("You choose scissors")
                 print(compname, "chooses", computer_actions)
-                print(dim + "Rock wins! You Lose." + r)
+                print(dim + "Rock wins! You Lose.")
                 comp_score += 1 
                 total_games += 1
         
@@ -115,18 +117,18 @@ def play():
                if user_prompt == 'n':
                    user_score = str(user_score)
                    comp_score = str(comp_score)
-                   print(success+"You scored", user_score+"."+r)
-                   print(success+dim+compname, "scored", comp_score+"."+r)
+                   print(success+"You scored", user_score+"."+consolecolor)
+                   print(success+dim+compname, "scored", comp_score+"."+consolecolor)
                    
                    if tie == 1:
-                       print(yellow+"Drawn",tie,"time.n"+r)
-                   elif tie >= 2 or tie < 1:
-                       print(yellow+"Drawn",tie,"times.\n"+r)
+                       print(yellow+"Drawn",tie,"time.\n"+consolecolor)
+                   elif tie >= 2 or tie == 0:
+                       print(yellow+"Drawn",tie,"times.\n"+consolecolor)
                        
                    if total_games == 1:
-                       print(white+"You played",total_games,"game.\n"+r)
-                   elif total_games >= 2 or total_games < 1:
-                       print(white+"You played",total_games,"games.\n"+r)
+                       print(white+"You played",total_games,"game.\n"+consolecolor)
+                   elif total_games >= 2 or total_games == 0:
+                       print(white+"You played",total_games,"games.\n"+consolecolor)
                     
                    while True:
                        scview = input('Do you want to view your scoreboard chart? (y/n)\n').lower()
@@ -153,7 +155,7 @@ def play():
                                exit()
                            
                            elif charttype == 'dots':
-                               mtp.scatter(userscores, compscores, color=datacolor, s=[140,70,100])
+                               mtp.scatter(userscores, compscores, color=datacolor, s=[280,140,200])
                                mtp.title('Your RPS Scoreboard')
                                print("\nAs of", dateasstr)
                                mtp.show()
@@ -190,18 +192,18 @@ def play():
             if user_action == 'stop':
                 user_score = str(user_score)
                 comp_score = str(comp_score)
-                print(success+"You scored", user_score+"."+r)
-                print(success+dim+compname, "scored", comp_score+"."+r)
+                print(success+"You scored", user_score+"."+consolecolor)
+                print(success+dim+compname, "scored", comp_score+"."+consolecolor)
                 
                 if tie == 1:
-                    print(yellow + "Drawn",tie,"time.\n" +r)
-                elif tie >= 2 or tie < 1:
-                    print(yellow + "Drawn",tie,"times.n" +r)
+                    print(yellow + "Drawn",tie,"time.\n" +consolecolor)
+                elif tie >= 2 or tie == 1:
+                    print(yellow + "Drawn",tie,"times.\n" +consolecolor)
                     
                 if total_games == 1:
-                    print(white+"You played",total_games,"game.\n"+r)
-                elif total_games >= 2 or total_games < 1:
-                    print(white+"You played",total_games,"games.\n"+r)
+                    print(white+"You played",total_games,"game.\n"+consolecolor)
+                elif total_games >= 2 or total_games == 1:
+                    print(white+"You played",total_games,"games.\n"+consolecolor)
                     
                 while True:
                     scview = input('Do you want to view your scoreboard chart? (y/n)\n').lower()
@@ -228,7 +230,7 @@ def play():
                             exit()
                         
                         elif charttype == 'dots':
-                            mtp.scatter(userscores, compscores, color=datacolor, sizes=(20,))
+                            mtp.scatter(userscores, compscores, color=datacolor, s=[280,140,200])
                             mtp.title('Your RPS Scoreboard')
                             print("\nAs of", dateasstr)
                             mtp.show()

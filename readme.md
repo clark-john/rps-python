@@ -7,8 +7,9 @@ And you can also play with it.
 To run this game, you can clone the repository by typing this in the command line: `git clone <this-repository>`
 
 After cloning the repo, please run the **index.py** file first, otherwise it won't work. <br>
-Now you choose between these options below: <br>
-<img src="/img/indexpy.PNG" /> <br>
+Now you choose between these options below: 
+<br>
+<img src="./img/indexpy.PNG" /> <br>
 
 **y/n** (yes or no) or **cmds** for special commands.
 
@@ -21,19 +22,14 @@ These are the **Python** modules that I used:
 + configparser
 + random
 + datetime
-+ matplotlib (this is required to display scoreboard)
++ matplotlib
 + colorama
 + platform
 
-#### Purposes of these modules?
-+ os - checking if the *settings.ini* file exists
-+ sys - to use the exit function
-+ configparser - for making changes with the *settings.ini* file
-+ random - randomizing actions
-+ datetime - returning date and time
-+ matplotlib - display scoreboard
-+ colorama - colorize the terminal
-+ platform - displaying system info and **Python** version
+#### What *Python* modules are required to install?
+These are modules are required to install before running this game:
++ matplotlib
++ colorama
 
 ## Documentation
 Coming Soon:)
