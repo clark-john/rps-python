@@ -1,13 +1,14 @@
 # rps-python
 
-An advanced **Python** console program. <br>
-And you can also play with it.
+An advanced **Python** _rock-paper-scissors_ console application.
 
 ## How to play:
 To run this game, clone the repository by typing this in the terminal: `git clone <this-repository>` and `cd <this-repository>`
+Alternatively, you can look at the [releases page](https://github.com/clark-john/rps-python/releases) to download the source files.
 
 After cloning the repo, please run the **index.py** file first, otherwise it won't work. <br>
-You can also type this into terminal: `python index.py` or `py index.py` <br>
+You can also type this into terminal: `python index.py` or `py index.py` 
+<p>
 Now you choose between these options below: <br>
 <img src="./img/indexpy.PNG" /> <br>
 
@@ -30,7 +31,7 @@ These are the **Python** modules that I used:
 + shutil
 
 #### What *Python* modules are required to install?
-These are modules are required to install before running this game:
+These modules are required to install before running this game:
 + matplotlib
 + colorama
 
