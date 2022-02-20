@@ -2,21 +2,27 @@ from platform import python_version, system
 from commands import *
 from commands_help import *
 
-commands = ['toggle_nonstop',
-            'changedatacolor',
-            'currentdatacolor',
-            'game',
-            'changecharttype',
-            'currentcharttype',
-            'isitnonstop',
-            'resetsettings',
-            'changeconsolecolor',
-            'currentconsolecolor']
+commands = ['toggle_nonstop', #0
+            'changedatacolor', #1
+            'currentdatacolor', #2
+            'game', #3
+            'changecharttype', #4
+            'currentcharttype', #5
+            'isitnonstop', #6
+            'resetsettings', #7
+            'changeconsolecolor', #8
+            'currentconsolecolor', #9
+            'datacolorpreview', #10
+            'clearcache', #11
+            'clearscore', #12
+            ]
    
 # Main cmd
 
 def cmd():
     print("""
+        Welcome to rps-tui!
+
           List of available commands:
           - changedatacolor
           - toggle_nonstop
@@ -28,13 +34,17 @@ def cmd():
           - resetsettings
           - changeconsolecolor
           - currentconsolecolor
+          - datacolorpreview
+          - clearcache
+          - clearscore
 
           Other commands:
           - python_version
           - system
+          - rps
           
           Type \"<command>\" to get started with the command.
-          or type \"help <command>\" to see the usage and description of a command.""")
+          or type \"help <command>\" to see the usage and description of a command.""")  
     while True:
         com = input(">> ")
         
@@ -69,9 +79,14 @@ def cmd():
             changeconsolecolor()
         elif com == commands[9] or com == 'ccc':
             currentconsolecolor()
-        
+        elif com == commands[10] or com == 'viewcolor':
+            datacolorpreview()
+        elif com == commands[11] or com == 'uncache':
+            clearcache()
+        elif com == commands[12]:
+            clearscore()
+
 # Calling commands with usage argument
-        
         
         if com == "help " + commands[0]:
             nonstop_toggle_help()
@@ -93,3 +108,9 @@ def cmd():
             changeconsolecolor_help()
         elif com == "help " + commands[9]:
             currentconsolecolor_help()
+        elif com == "help " + commands[10]:
+            datacolorpreview_help()
+        elif com == "help " + commands[11]:
+            clearcache_help()
+        elif com == "help " + commands[12]:
+            clearscore_help()

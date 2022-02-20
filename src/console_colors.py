@@ -5,7 +5,6 @@ init()
 config = ConfigParser()
 config.read('./settings.ini')
 
-
 consolecolor = config.get('Console', 'default_console_color')
 
 if consolecolor == 'cyan':

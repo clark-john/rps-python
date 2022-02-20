@@ -1,5 +1,4 @@
-from rps_cli import cmd
-from sys import exit
+from rps_tui import cmd
 from rps import play
 from colorama import Fore, init, Style
 from platform import system
@@ -43,4 +42,4 @@ while True:
     else:
         print(red+"Try again.\n")
 
-# Version v1.0.2
+# Version v1.0.3
