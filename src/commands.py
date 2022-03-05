@@ -71,6 +71,7 @@ def changedatacolor():
       elif hex_pattern.match(datachartcolor) == None:
         msgbox.showerror('Error', "Invalid hex code.")
       else:
+        datachartcolor = f"#{datachartcolor}"
         set_color()
     elif datatype == 'n':
       datachartcolor = input("Type a name of a color.\n")

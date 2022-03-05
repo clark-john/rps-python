@@ -52,7 +52,7 @@ def datacolorpreview_help():
   print("Alias: viewcolor")
 
 def clearcache_help():
-  print("Description: Clears the cache (__pycache).")
+  print("Description: Clears the cache (__pycache__).")
   print("Alias: uncache")
 
 def clearscore_help():

@@ -30,6 +30,7 @@ These are the **Python** modules that I used:
 + csv
 + shutil
 + re
++ time
 
 #### What *Python* modules are required to install?
 These modules are required to install before running this game:

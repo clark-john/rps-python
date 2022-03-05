@@ -7,6 +7,7 @@ from console_colors import consolecolor
 from tkinter import messagebox as msgbox
 from csv import writer
 from platform import system
+from time import sleep
 
 init()
 def play():
@@ -161,27 +162,33 @@ def play():
                 datacolor = config.get('Chart', 'datachartcolor')
                    
                 if charttype == 'bar':
-                  mtp.bar(userscores, compscores, color=f"#{datacolor}")
+                  mtp.bar(userscores, compscores, color=datacolor)
                   mtp.title('Your RPS Scoreboard')
                   print("As of", dateasstr)
                   mtp.savefig('score.png')
                   mtp.show()
+                  print("Thanks for playing! :)")
+                  sleep(3)
                   exit()
                     
                 elif charttype == 'plot':
-                  mtp.plot(userscores, compscores, marker='o', color=f"#{datacolor}")
+                  mtp.plot(userscores, compscores, marker='o', color=datacolor)
                   mtp.title('Your RPS Scoreboard')
                   print("\nAs of", dateasstr)
                   mtp.savefig('score.png')
                   mtp.show()
+                  print("Thanks for playing! :)")
+                  sleep(3)
                   exit()
                    
                 elif charttype == 'dots':
-                  mtp.scatter(userscores, compscores, color=f"#{datacolor}", s=[280,140,200])
+                  mtp.scatter(userscores, compscores, color=datacolor, s=[280,140,200])
                   mtp.title('Your RPS Scoreboard')
                   print("\nAs of", dateasstr)
                   mtp.savefig('score.png')
                   mtp.show()
+                  print("Thanks for playing! :)")
+                  sleep(3)
                   exit()             
 
                 elif charttype == 'stem':
@@ -190,16 +197,22 @@ def play():
                   print("\nAs of", dateasstr)
                   mtp.savefig('score.png')
                   mtp.show()
+                  print("Thanks for playing! :)")
+                  sleep(3)
                   exit()     
 
                 elif charttype == 'step':
-                  mtp.step(userscores, compscores, color=f"#{datacolor}")
+                  mtp.step(userscores, compscores, color=datacolor)
                   mtp.title('Your RPS Scoreboard')
                   print("\nAs of", dateasstr)
                   mtp.savefig('score.png')
                   mtp.show()
+                  print("Thanks for playing! :)")
+                  sleep(3)
                   exit()     
               else:
+                print("Thanks for playing! :)")
+                sleep(3)
                 print("Exiting...")
                 return
 
@@ -248,27 +261,33 @@ def play():
               datacolor = config.get('Chart', 'datachartcolor')
                 
               if charttype == 'bar':
-                mtp.bar(userscores, compscores, color=f"#{datacolor}")
+                mtp.bar(userscores, compscores, color=datacolor)
                 mtp.title('Your RPS Scoreboard')
                 print("As of", dateasstr)
                 mtp.savefig('score.png')
                 mtp.show()
+                print("Thanks for playing! :)")
+                sleep(3)
                 exit()
                
               elif charttype == 'plot':
-                mtp.plot(userscores, compscores, marker='o', color=f"#{datacolor}")
+                mtp.plot(userscores, compscores, marker='o', color=datacolor)
                 mtp.title('Your RPS Scoreboard')
                 print("\nAs of", dateasstr)
                 mtp.savefig('score.png')
                 mtp.show()
+                print("Thanks for playing! :)")
+                sleep(3)
                 exit()
               
               elif charttype == 'dots':
-                mtp.scatter(userscores, compscores, color=f"#{datacolor}", s=[280,140,200])
+                mtp.scatter(userscores, compscores, color=datacolor, s=[280,140,200])
                 mtp.title('Your RPS Scoreboard')
                 print("\nAs of", dateasstr)
                 mtp.savefig('score.png')
                 mtp.show()
+                print("Thanks for playing! :)")
+                sleep(3)
                 exit()    
 
               elif charttype == 'stem':
@@ -277,15 +296,21 @@ def play():
                 print("\nAs of", dateasstr)
                 mtp.savefig('score.png')
                 mtp.show()
+                print("Thanks for playing! :)")
+                sleep(3)
                 exit()  
 
               elif charttype == 'step':
-                mtp.step(userscores, compscores, color=f"#{datacolor}")
+                mtp.step(userscores, compscores, color=datacolor)
                 mtp.title('Your RPS Scoreboard')
                 print("\nAs of", dateasstr)
                 mtp.savefig('score.png')
                 mtp.show()
+                print("Thanks for playing! :)")
+                sleep(3)
                 exit()  
             else:
+              print("Thanks for playing! :)")
+              sleep(3)
               print("Exiting...")
               return
