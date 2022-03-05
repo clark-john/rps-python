@@ -12,7 +12,6 @@ def nonstop_toggle_help():
     
 def changedatacolor_help():
   print("Description: It prompts for changing the data color by hexcode or name of a color.")
-  print("Make sure you add the \"#\" before the hexcode, or specify an appropriate name of a color.")
   print("List of available named colors: "+yel+"https://matplotlib.org/stable/gallery/color/named_colors.html"+consolecolor)
   print("Alias: cdc")
     
@@ -58,3 +57,7 @@ def clearcache_help():
 
 def clearscore_help():
   print("Description: Clears/resets the csv score file.")
+
+def showcolorlist_help():
+  print("Description: It shows the list of accepted color names.")
+  print("Alias: colors")

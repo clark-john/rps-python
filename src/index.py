@@ -42,4 +42,4 @@ while True:
     else:
         print(red+"Try again.\n")
 
-# Version v1.0.3
+# Version v1.0.4

@@ -3,8 +3,8 @@
 An advanced **Python** _rock-paper-scissors_ console application.
 
 ## How to play:
-To run this game, clone the repository by typing this in the terminal: `git clone <this-repository>` and `cd <this-repository>`
-Alternatively, you can look at the [releases page](https://github.com/clark-john/rps-python/releases) to download the source files.
+To run this game, clone the repository by typing this in the terminal: `git clone <this-repository>` and <br>
+`cd <this-repository>`. Alternatively, you can look at the [releases page](https://github.com/clark-john/rps-python/releases) to download the source files.
 
 After cloning the repo, please run the **index.py** file first, otherwise it won't work. <br>
 You can also type this into terminal: `python index.py` or `py index.py` 
@@ -29,11 +29,15 @@ These are the **Python** modules that I used:
 + tkinter
 + csv
 + shutil
++ re
 
 #### What *Python* modules are required to install?
 These modules are required to install before running this game:
 + matplotlib
 + colorama
+
+Bonus: Install the required modules by running `pip install -r requirements.txt`.
+Make sure your current working directory in your terminal is the same path as the _requirements.txt_ file.
 
 #### My Python Version:
 
@@ -41,7 +45,7 @@ These modules are required to install before running this game:
 
 #### rps-python Latest Version:
 
-v1.0.3
+v1.0.4
 
 ## Documentation
 Coming Soon:)

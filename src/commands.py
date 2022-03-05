@@ -6,9 +6,16 @@ from tkinter import messagebox as msgbox
 import matplotlib.pyplot as mtp
 import sys
 from shutil import rmtree
+from re import compile
+
+sys.path.append('./colors/')
+
+from colors import colors_list
 
 config = ConfigParser()
 config.read('./settings.ini')
+
+hex_pattern = compile('^[a-fA-F\\d]{6}$')
 
 chart_types = ['bar',
                'dots',
@@ -46,16 +53,39 @@ def nonstop_toggle():
 
 def changedatacolor():
   if path.exists('./settings.ini'):
-    datachartcolor = input("Type a name of color or hex code of a color.\n")
-    if datachartcolor == "exit":
-      return
-    elif datachartcolor == '':
-      print(critical + 'Data color cannot be null.'+r)
-    else:
+
+    datatype = input("Hex code or color name? (h/n)\n").lower()
+
+    def set_color():
       config.set('Chart', 'datachartcolor', datachartcolor)
       with open ('settings.ini', 'w') as settingsfile:
         config.write(settingsfile)
-        print(success + 'Bar color updated successfully.'+r)
+        msgbox.showinfo('Success', 'Bar color updated successfully.')
+
+    if datatype == 'h':
+      datachartcolor = input("Type a hexadecimal code for a color.\n")
+      if datachartcolor == "exit":
+        return
+      elif datachartcolor == '':
+        msgbox.showerror('Error', "Bar color cannot be null.")
+      elif hex_pattern.match(datachartcolor) == None:
+        msgbox.showerror('Error', "Invalid hex code.")
+      else:
+        set_color()
+    elif datatype == 'n':
+      datachartcolor = input("Type a name of a color.\n")
+      if datachartcolor not in colors_list:
+        msgbox.showerror('Error', "Invalid color name.")
+      elif datachartcolor == '':
+        msgbox.showerror('Error', "Bar color cannot be null.") 
+      elif datachartcolor == 'exit':
+        exit()
+      else:
+        set_color()
+
+    elif datatype == 'exit':
+      exit()
+
   else:
     msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
 
@@ -142,7 +172,7 @@ def currentconsolecolor():
   if path.exists('./settings.ini'):
     print(config.get('Console', 'default_console_color'))
   else:
-    msgbox.showerror("Error", "Couldn\'t find settings.ini file.").
+    msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
 
 def datacolorpreview():
   x = ['A','B','C']
@@ -153,8 +183,9 @@ def datacolorpreview():
   mtp.show()
 
 def clearcache():
-  if path.exists('./__pycache__'):
+  if path.exists('./__pycache__') and path.exists('./colors/__pycache__'):
     rmtree('__pycache__')
+    rmtree('./colors/__pycache__')
     msgbox.showinfo('Success','Cleared the cache successfully.')
   else:
     msgbox.showinfo('Clear cache', '__pycache__ folder not found.')
@@ -165,4 +196,7 @@ def clearscore():
     msgbox.showinfo('Success','Cleared the score successfully.')
   else:
     msgbox.showinfo('Clear score', 'score.csv not found.')
-  
+
+def showcolorlist():
+  with open('./colors/colors.txt', 'r') as colors:
+    print(colors.read())

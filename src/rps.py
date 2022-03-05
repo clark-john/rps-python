@@ -3,10 +3,10 @@ from configparser import ConfigParser
 from random import choice
 from datetime import datetime
 from colorama import init, Fore, Style
-from os import system
 from console_colors import consolecolor
 from tkinter import messagebox as msgbox
 from csv import writer
+from platform import system
 
 init()
 def play():
@@ -21,12 +21,21 @@ def play():
   total_games = 0
 
   # Colorama Variables
+  
+  #Style + checking the system
 
-    #Style
-  dim = Style.DIM
-  normal = Style.NORMAL
-  bright = Style.BRIGHT
+  if system() == 'Windows':
+    dim = Style.DIM
+    normal = Style.BRIGHT # since Windows has only dim and bright colors.
+    bright = Style.BRIGHT
+
+  elif system() == 'Linux':
+    dim = Style.DIM
+    normal = Style.NORMAL
+    bright = Style.BRIGHT
+  
     #Fore
+  critical = Fore.RED
   success = Fore.GREEN
   yellow = Fore.YELLOW
   white = Fore.WHITE
@@ -53,13 +62,13 @@ def play():
     
     if user_action not in possible_actions \
       and not user_action == 'stop':
-      print(critical + "Invalid option. Try again.")
+      print(critical + "Invalid option. Try again." + consolecolor)
       continue
 
     if user_action == computer_actions:
       print(bright+"You choose", user_action.lower())
       print(compname, "chooses", computer_actions)
-      print(yellow++ "It's a tie"+consolecolor)
+      print(normal+yellow+ "It's a tie"+consolecolor)
       tie += 1
       total_games += 1    
     
@@ -152,23 +161,26 @@ def play():
                 datacolor = config.get('Chart', 'datachartcolor')
                    
                 if charttype == 'bar':
-                  mtp.bar(userscores, compscores, color=datacolor)
+                  mtp.bar(userscores, compscores, color=f"#{datacolor}")
                   mtp.title('Your RPS Scoreboard')
                   print("As of", dateasstr)
+                  mtp.savefig('score.png')
                   mtp.show()
                   exit()
                     
                 elif charttype == 'plot':
-                  mtp.plot(userscores, compscores, marker='o', color=datacolor)
+                  mtp.plot(userscores, compscores, marker='o', color=f"#{datacolor}")
                   mtp.title('Your RPS Scoreboard')
                   print("\nAs of", dateasstr)
+                  mtp.savefig('score.png')
                   mtp.show()
                   exit()
                    
                 elif charttype == 'dots':
-                  mtp.scatter(userscores, compscores, color=datacolor, s=[280,140,200])
+                  mtp.scatter(userscores, compscores, color=f"#{datacolor}", s=[280,140,200])
                   mtp.title('Your RPS Scoreboard')
                   print("\nAs of", dateasstr)
+                  mtp.savefig('score.png')
                   mtp.show()
                   exit()             
 
@@ -176,13 +188,15 @@ def play():
                   mtp.stem(userscores, compscores, markerfmt='o')
                   mtp.title('Your RPS Scoreboard')
                   print("\nAs of", dateasstr)
+                  mtp.savefig('score.png')
                   mtp.show()
                   exit()     
 
                 elif charttype == 'step':
-                  mtp.step(userscores, compscores, color=datacolor)
+                  mtp.step(userscores, compscores, color=f"#{datacolor}")
                   mtp.title('Your RPS Scoreboard')
                   print("\nAs of", dateasstr)
+                  mtp.savefig('score.png')
                   mtp.show()
                   exit()     
               else:
@@ -234,23 +248,26 @@ def play():
               datacolor = config.get('Chart', 'datachartcolor')
                 
               if charttype == 'bar':
-                mtp.bar(userscores, compscores, color=datacolor)
+                mtp.bar(userscores, compscores, color=f"#{datacolor}")
                 mtp.title('Your RPS Scoreboard')
                 print("As of", dateasstr)
+                mtp.savefig('score.png')
                 mtp.show()
                 exit()
                
               elif charttype == 'plot':
-                mtp.plot(userscores, compscores, marker='o', color=datacolor)
+                mtp.plot(userscores, compscores, marker='o', color=f"#{datacolor}")
                 mtp.title('Your RPS Scoreboard')
                 print("\nAs of", dateasstr)
+                mtp.savefig('score.png')
                 mtp.show()
                 exit()
               
               elif charttype == 'dots':
-                mtp.scatter(userscores, compscores, color=datacolor, s=[280,140,200])
+                mtp.scatter(userscores, compscores, color=f"#{datacolor}", s=[280,140,200])
                 mtp.title('Your RPS Scoreboard')
                 print("\nAs of", dateasstr)
+                mtp.savefig('score.png')
                 mtp.show()
                 exit()    
 
@@ -258,20 +275,17 @@ def play():
                 mtp.stem(userscores, compscores, markerfmt='o')
                 mtp.title('Your RPS Scoreboard')
                 print("\nAs of", dateasstr)
+                mtp.savefig('score.png')
                 mtp.show()
                 exit()  
 
               elif charttype == 'step':
-                mtp.step(userscores, compscores, color=datacolor)
+                mtp.step(userscores, compscores, color=f"#{datacolor}")
                 mtp.title('Your RPS Scoreboard')
                 print("\nAs of", dateasstr)
+                mtp.savefig('score.png')
                 mtp.show()
                 exit()  
             else:
               print("Exiting...")
               return
-        elif user_prompt != 'y' and not(user_prompt == 'n'):
-          print("Try again.")
-          continue
-        elif user_prompt == 'y':
-          break
