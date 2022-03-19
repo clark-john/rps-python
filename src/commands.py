@@ -13,6 +13,7 @@ sys.path.append('./colors/')
 from colors import colors_list
 
 config = ConfigParser()
+config.read('./settings.ini')
 
 hex_pattern = compile('^[a-fA-F\\d]{6}$')
 
