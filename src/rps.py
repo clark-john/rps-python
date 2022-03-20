@@ -42,7 +42,7 @@ def play():
   white = Fore.WHITE
 
   datenow = datetime.now()
-  dateasstr = datenow.strftime("%B %d,%Y %I:%M %p")
+  dateasstr = datenow.strftime("%B %d, %Y %I:%M %p")
 
   nonstop = config.get('RPS', 'nonstop')
   charttype = config.get('Chart','chart_type')
