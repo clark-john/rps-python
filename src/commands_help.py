@@ -57,7 +57,19 @@ def clearcache_help():
 
 def clearscore_help():
   print("Description: Clears/resets the csv score file.")
+  print("Alias: unsc")
 
 def showcolorlist_help():
   print("Description: It shows the list of accepted color names.")
   print("Alias: colors")
+
+def screenshot_help():
+  print("Description: Screenshots the entire screen.")
+  print("Alias: ss")
+
+def repolink_help():
+  print("Description: Returns the repository link.")
+  print("Alias: repo")
+
+def creator_help():
+  print("Description: Returns the creator of this repository.")

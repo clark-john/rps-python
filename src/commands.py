@@ -7,6 +7,21 @@ import matplotlib.pyplot as mtp
 import sys
 from shutil import rmtree
 from re import compile
+from webbrowser import open_new_tab
+from glob import glob
+from time import sleep
+import pyscreeze
+from colorama import (
+  init,
+  Fore,
+  Style
+)
+
+init()
+
+# Colorama Variables:
+yel = Style.BRIGHT + Fore.YELLOW 
+gr = Style.BRIGHT + Fore.GREEN
 
 sys.path.append('./colors/')
 
@@ -192,12 +207,41 @@ def clearcache():
     msgbox.showinfo('Clear cache', '__pycache__ folder not found.')
 
 def clearscore():
-  if path.exists('./score.csv'):
-    remove('score.csv')
+  if path.exists('./score.csv') or path.exists('./score.png'):
+    gl = glob('score*')
+    for file in gl:
+      remove(file)
     msgbox.showinfo('Success','Cleared the score successfully.')
   else:
-    msgbox.showinfo('Clear score', 'score.csv not found.')
+    msgbox.showinfo('Clear score', 'Already cleared the scores.')
 
 def showcolorlist():
   with open('./colors/colors.txt', 'r') as colors:
     print(colors.read())
+
+def screenshot():
+  ss = 3
+  while ss >= 0:
+    print(f"Screenshotting in {ss}")
+    sleep(1)
+    ss -= 1
+  pyscreeze.screenshot('Screenshot.png')
+  print("Screenshot done")
+
+def repolink():
+  print(gr+"https://github.com/clark-john/rps-python"+yel)
+  print("View on browser? (y/n)"+consolecolor)
+  op = input().lower()
+  if op == 'y':
+    open_new_tab('https://github.com/clark-john/rps-python')
+  else:
+    return
+
+def creator():
+  print(gr+"clark-john a.k.a. Clark"+yel)
+  print("View on browser? (y/n)"+consolecolor)
+  op = input().lower()
+  if op == 'y':
+    open_new_tab('https://github.com/clark-john')
+  else:
+    return

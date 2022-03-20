@@ -42,7 +42,7 @@ def play():
   white = Fore.WHITE
 
   datenow = datetime.now()
-  dateasstr = datenow.strftime("%Y-%m-%d %H:%M:%S")
+  dateasstr = datenow.strftime("%B %d,%Y %I:%M %p")
 
   nonstop = config.get('RPS', 'nonstop')
   charttype = config.get('Chart','chart_type')
@@ -143,11 +143,12 @@ def play():
 
           with open('score.csv', 'w', newline='') as score: 
             w = writer(score)
+            date = [dateasstr]
             wins = ['Wins', user_score]
             loses = ['Loses', comp_score]
             draws = ['Draws', tie]
             total = ['Total Games', total_games]
-            forloop = [wins, loses, draws, total]
+            forloop = [date, wins, loses, draws, total]
             for x in forloop:
               w.writerow(x)
             
@@ -242,11 +243,12 @@ def play():
           
           with open('score.csv', 'w', newline='') as score: 
             w = writer(score)
+            date = [dateasstr]
             wins = ['Wins', user_score]
             loses = ['Loses', comp_score]
             draws = ['Draws', tie]
             total = ['Total Games', total_games]
-            forloop = [wins, loses, draws, total]
+            forloop = [date, wins, loses, draws, total]
             for x in forloop:
               w.writerow(x)
 

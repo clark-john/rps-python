@@ -27,7 +27,7 @@ red = Fore.RED
 
 while True:
 	print(green+"Welcome to rps-python!\n"+yel)
-	print("You're using",sys,"as of now."+Style.DIM)
+	print("You're using",sys,"as of now.")
 	print("Python Version:", pyver+consolecolor+bright)
 	print("Wanna play? Type \'y\' to start the game or type \'n\' if you're exiting."+mag)
 	print("Type \"cmds\" for special commands."+consolecolor)
@@ -45,4 +45,4 @@ while True:
 	else:
 		print(red+"Try again.\n")
 
-# Version v1.0.4a
+# Version v1.0.5
