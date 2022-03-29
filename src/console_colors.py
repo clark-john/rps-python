@@ -3,7 +3,7 @@ from colorama import Fore, init
 
 init()
 config = ConfigParser()
-config.read('./settings.ini')
+config.read('settings.ini')
 
 consolecolor = config.get('Console', 'default_console_color')
 

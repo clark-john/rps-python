@@ -2,13 +2,10 @@ from rps_tui import cmd
 from rps import play
 from colorama import Fore, init, Style
 from platform import system, python_version
-from configparser import ConfigParser
 from console_colors import consolecolor
 from os import path
 
 # This file is the starting point of the entire game.
-
-config = ConfigParser()
 
 init()
 sys = system()
@@ -35,7 +32,6 @@ while True:
 
 	if startup == "y":
 		play()
-		break
 	elif startup == "n" or startup == 'exit':
 		print("Exiting...")
 		exit()

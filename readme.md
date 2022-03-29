@@ -10,7 +10,7 @@ After cloning the repo, please run the **index.py** file first, otherwise it won
 You can also type this into terminal: `python index.py` or `py index.py`
 
 For those who downloaded at the [releases page](https://github.com/clark-john/rps-python/releases): <br>
-Any of these releases (latest) contain compiled Python files, so that you can run it directly on Windows or run it inside the terminal.
+Any of these releases (latest) contain compiled Python files, so that you can run it directly on Windows or run it inside the terminal with `./index.pyc`.
 
 <p>
 Now you choose between these options below: <br>
@@ -26,9 +26,8 @@ See [here](./md/modules.md)
 
 #### What *Python* modules are required to install?
 These modules are required to install before running this game:
-+ matplotlib
-+ colorama
-+ pyscreeze
+
+Also see [here](./md/modules.md)
 
 Bonus: Install the required modules by running `pip install -r requirements.txt`.
 Make sure your current working directory in your terminal is the same path as the _requirements.txt_ file.
@@ -39,7 +38,7 @@ Make sure your current working directory in your terminal is the same path as th
 
 #### rps-python Latest Version:
 
-v1.0.5
+v1.0.6
 
 ## Documentation
 Coming Soon:)

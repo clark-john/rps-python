@@ -1,6 +1,8 @@
 src/**/*__pycache__
-src/requirements.txt
+src/*.txt
+!src/colors.txt
 *.rar
 *.csv
 *.png
+*.swp
 changelog.md

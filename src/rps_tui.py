@@ -25,48 +25,57 @@ commands = [
 # Main cmd
 
 def cmd():
-	print("""
-		Welcome to rps-tui!
 
-		  List of available commands:
-		  - changedatacolor
-		  - toggle_nonstop
-		  - currentdatacolor
-		  - game
-		  - changecharttype
-		  - currentcharttype
-		  - isitnonstop
-		  - resetsettings
-		  - changeconsolecolor
-		  - currentconsolecolor
-		  - datacolorpreview
-		  - clearcache
-		  - clearscore
-		  - showcolorlist
+	rps_tui = """
+	Welcome to rps-tui!
 
-		  Special:
-		  - screenshot
-		  - creator
-		  - repolink
+	  List of available commands:
+	  - changedatacolor
+	  - toggle_nonstop
+	  - currentdatacolor
+	  - game
+	  - changecharttype
+	  - currentcharttype
+	  - isitnonstop
+	  - resetsettings
+	  - changeconsolecolor
+	  - currentconsolecolor
+	  - datacolorpreview
+	  - clearcache
+	  - clearscore
+	  - showcolorlist
 
-		  Other commands:
-		  - python_version
-		  - system
-		  - rps
-		  
-		  Type any of these commands to execute.
-		  Type \"help <command>\" to see the usage and description of a command.""")  
+	  Special:
+	  - screenshot
+	  - creator
+	  - repolink
+
+	  Other commands:
+	  - python_version
+	  - system
+	  - rps
+	  
+	  Type any of these commands to execute.
+	  Type \"help <command>\" to see the usage and description of a command.
+	  Type \"help others\" for help of other commands.
+"""
+
+	print(rps_tui)
 	while True:
 		com = input(">> ")
 		
 		if com == "exit":
 			break
 		elif com == "rps":
-			cmd()
+			print(rps_tui)
 		elif com == 'python_version':
 			print(python_version())
 		elif com == 'system':
 			print(system())
+		elif com == 'help others':
+			print("python_version: Returns your current Python version.")
+			print("system: Returns system you're using.")
+			print("rps: Returns commands list.")
 
 # Calling commands
 

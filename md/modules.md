@@ -14,6 +14,8 @@
 + re
 + time
 + _pyscreeze_
++ _pandas_
++ _inquirerpy_
 + webbrowser
 
 <br>

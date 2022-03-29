@@ -53,6 +53,7 @@ def datacolorpreview_help():
 
 def clearcache_help():
   print("Description: Clears the cache (__pycache__).")
+  print("Only use this if you downloaded the source code.")
   print("Alias: uncache")
 
 def clearscore_help():

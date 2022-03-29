@@ -4,7 +4,6 @@ from rps import play
 from console_colors import consolecolor
 from tkinter import messagebox as msgbox
 import matplotlib.pyplot as mtp
-import sys
 from shutil import rmtree
 from re import compile
 from webbrowser import open_new_tab
@@ -17,15 +16,21 @@ from colorama import (
   Style
 )
 
+def init_colors_list():
+  global colors_list
+  with open('colors.txt', 'r') as file:
+    c = file.readlines()
+    colors_list = []
+    for x in c:
+      x.strip().lower()
+      colors_list.append(c)
+
 init()
+init_colors_list()
 
 # Colorama Variables:
 yel = Style.BRIGHT + Fore.YELLOW 
 gr = Style.BRIGHT + Fore.GREEN
-
-sys.path.append('./colors/')
-
-from colors import colors_list
 
 config = ConfigParser()
 config.read('./settings.ini')
@@ -48,6 +53,15 @@ console_colors = [
                 'yellow'
                     ]
 
+def color_list():
+  global colors
+  with open('colors.txt', 'r') as f:
+    d = f.readlines()
+    colors = []
+    for x in d:
+      e = x.strip().lower()
+      colors.append(e)
+
 # Commands
 
 def nonstop_toggle():
@@ -67,6 +81,7 @@ def nonstop_toggle():
     msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
 
 def changedatacolor():
+  color_list()
   if path.exists('./settings.ini'):
 
     datatype = input("Hex code or color name? (h/n)\n").lower()
@@ -90,17 +105,17 @@ def changedatacolor():
         set_color()
     elif datatype == 'n':
       datachartcolor = input("Type a name of a color.\n")
-      if datachartcolor not in colors_list:
+      if datachartcolor not in colors:
         msgbox.showerror('Error', "Invalid color name.")
       elif datachartcolor == '':
         msgbox.showerror('Error', "Bar color cannot be null.") 
       elif datachartcolor == 'exit':
-        exit()
+        return
       else:
         set_color()
 
     elif datatype == 'exit':
-      exit()
+      return
 
   else:
     msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
@@ -113,6 +128,7 @@ def currentdatacolor():
 
 def game():
   play()
+  
 
 def currentcharttype():
   if path.exists('./settings.ini'):
@@ -199,9 +215,8 @@ def datacolorpreview():
   mtp.show()
 
 def clearcache():
-  if path.exists('./__pycache__') and path.exists('./colors/__pycache__'):
+  if path.exists('./__pycache__'):
     rmtree('__pycache__')
-    rmtree('./colors/__pycache__')
     msgbox.showinfo('Success','Cleared the cache successfully.')
   else:
     msgbox.showinfo('Clear cache', '__pycache__ folder not found.')
@@ -216,7 +231,7 @@ def clearscore():
     msgbox.showinfo('Clear score', 'Already cleared the scores.')
 
 def showcolorlist():
-  with open('./colors/colors.txt', 'r') as colors:
+  with open('colors.txt', 'r') as colors:
     print(colors.read())
 
 def screenshot():
