@@ -16,17 +16,7 @@ from colorama import (
   Style
 )
 
-def init_colors_list():
-  global colors_list
-  with open('colors.txt', 'r') as file:
-    c = file.readlines()
-    colors_list = []
-    for x in c:
-      x.strip().lower()
-      colors_list.append(c)
-
 init()
-init_colors_list()
 
 # Colorama Variables:
 yel = Style.BRIGHT + Fore.YELLOW 
