@@ -1,5 +1,5 @@
 matplotlib >= 3.5.1
 colorama >= 0.4.4
-PyScreeze >= 0.1.28
 inquirerpy >= 0.3.3
 pandas >= 1.4.0
+pyscreenshot

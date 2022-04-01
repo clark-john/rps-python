@@ -9,7 +9,7 @@ from re import compile
 from webbrowser import open_new_tab
 from glob import glob
 from time import sleep
-import pyscreeze
+from pyscreenshot import grab
 from colorama import (
   init,
   Fore,
@@ -230,7 +230,8 @@ def screenshot():
     print(f"Screenshotting in {ss}")
     sleep(1)
     ss -= 1
-  pyscreeze.screenshot('Screenshot.png')
+  image = grab()
+  image.save('Screenshot.png')
   print("Screenshot done")
 
 def repolink():
