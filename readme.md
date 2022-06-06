@@ -34,11 +34,11 @@ Make sure your current working directory in your terminal is the same path as th
 
 #### My Python Version:
 
-3.10.2
+3.10.4
 
 #### rps-python Latest Version:
 
-v1.0.6
+v1.0.7
 
 ## Documentation
 Coming Soon:)
