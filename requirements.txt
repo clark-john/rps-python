@@ -1,6 +1,5 @@
 matplotlib >= 3.5.1
 colorama >= 0.4.4
 PyScreeze >= 0.1.28
-pick >= 1.2.0
 pyyaml >= 6.0
 inquirerpy >= 0.3.3
