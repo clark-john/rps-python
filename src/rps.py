@@ -1,5 +1,5 @@
 import matplotlib.pyplot as mtp
-from configparser import ConfigParser
+from yamlparser import get_data
 from random import choice
 from colorama import init, Fore, Style
 from console_colors import consolecolor
@@ -12,8 +12,7 @@ from pandas import DataFrame
 from InquirerPy import prompt
 
 def play():
-  config = ConfigParser()
-  config.read('./settings.ini')
+  yaml = get_data()
 
   global user_score, comp_score
   global rock_user, paper_user, scissors_user, rock_c, scissors_c, paper_c
@@ -45,7 +44,7 @@ def play():
   success = Fore.GREEN
   yellow = Fore.YELLOW
   white = Fore.WHITE
-  charttype = config.get('Chart','chart_type')
+  charttype = yaml['Chart']['chart_type']
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -54,7 +53,15 @@ def play():
     global rock_user, paper_user, scissors_user, rock_c, scissors_c, paper_c
     # inquirer setup
 
-    plot_options = {"name":"plot","type":"rawlist","message":"Plot scoreboard with?","choices":['matplotlib','pandas']} 
+    plot_options = {
+      "name": "plot",
+      "type": "rawlist",
+      "message": "Plot scoreboard with?",
+      "choices": [
+        'matplotlib',
+        'pandas'
+      ]
+    }
 
     user_score = user_score
     comp_score = comp_score
@@ -113,7 +120,7 @@ def play():
         
       userscores = ['Wins', 'Loses', 'Draw']
       compscores = [user_score, comp_score, tie]
-      datacolor = config.get('Chart', 'datachartcolor')
+      datacolor = yaml['Chart']['datachartcolor']
          
       if charttype == 'bar':
         mtp.bar(userscores, compscores, color=datacolor)
@@ -198,9 +205,9 @@ def play():
 
   """ ------------------------------------------------------------------------------------------- """
 
-  nonstop = config.get('RPS', 'nonstop')
+  nonstop = yaml['RPS']['nonstop']
     
-  if nonstop == "True":
+  if nonstop:
     print(success + "\nYou can now stop the game by typing \'stop\' while the game plays.\n"+consolecolor)
 
   compname = input("Enter the name of your player, or type \"none\" to skip.\nType \"cancel\" or \"exit\" to terminate this program.\n").lower()
@@ -297,7 +304,7 @@ def play():
     
     while True:
 
-      if nonstop == 'False':
+      if not nonstop:
         user_prompt = input("Wanna play again? y/n\n").lower()
 
         if user_prompt == 'n':

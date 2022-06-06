@@ -1,9 +1,9 @@
+import matplotlib.pyplot as mtp
 from os import path, remove
-from configparser import ConfigParser
+from yamlparser import get_data, set_data
 from rps import play
 from console_colors import consolecolor
 from tkinter import messagebox as msgbox
-import matplotlib.pyplot as mtp
 from shutil import rmtree
 from re import compile
 from webbrowser import open_new_tab
@@ -22,8 +22,7 @@ init()
 yel = Style.BRIGHT + Fore.YELLOW 
 gr = Style.BRIGHT + Fore.GREEN
 
-config = ConfigParser()
-config.read('./settings.ini')
+yaml = get_data()
 
 hex_pattern = compile('^[a-fA-F\\d]{6}$')
 
@@ -55,32 +54,29 @@ def color_list():
 # Commands
 
 def nonstop_toggle():
-  if path.exists('./settings.ini'):
+  if path.exists('./settings.yml'):
     toggle = msgbox.askyesno("Enable Nonstop", "Turn on nonstop?")
     if toggle == True:
-      config.set('RPS', 'nonstop', 'True')
-      with open ('settings.ini', 'w') as settingsfile:
-        config.write(settingsfile)
-        msgbox.showinfo("Success", "Nonstop set to True")
+      yaml['RPS']['nonstop'] = True
+      set_data(yaml)
+      msgbox.showinfo("Success", "Nonstop set to True")
     elif toggle == False:
-      config.set('RPS', 'nonstop', 'False')
-      with open ('settings.ini', 'w') as settingsfile:
-        config.write(settingsfile)
-        msgbox.showinfo("Success", "Nonstop set to False")
+      yaml['RPS']['nonstop'] = False
+      set_data(yaml)
+      msgbox.showinfo("Success", "Nonstop set to False")
   else:
-    msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+    msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def changedatacolor():
   color_list()
-  if path.exists('./settings.ini'):
+  if path.exists('./settings.yml'):
 
     datatype = input("Hex code or color name? (h/n)\n").lower()
 
     def set_color():
-      config.set('Chart', 'datachartcolor', datachartcolor)
-      with open ('settings.ini', 'w') as settingsfile:
-        config.write(settingsfile)
-        msgbox.showinfo('Success', 'Bar color updated successfully.')
+      yaml['Chart']['datachartcolor'] = datachartcolor
+      set_data(yaml)
+      msgbox.showinfo('Success', 'Bar color updated successfully.')
 
     if datatype == 'h':
       datachartcolor = input("Type a hexadecimal code for a color.\n")
@@ -108,71 +104,70 @@ def changedatacolor():
       return
 
   else:
-    msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+    msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def currentdatacolor():
-  if path.exists('./settings.ini'):
-    print(config.get('Chart', 'datachartcolor'))
+  if path.exists('./settings.yml'):
+    print(yaml['Chart']['datachartcolor'])
   else:
-    msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+    msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def game():
   play()
   
 
 def currentcharttype():
-  if path.exists('./settings.ini'):
-    print(config.get('Chart', 'chart_type'))
+  if path.exists('./settings.yml'):
+    print(yaml['Chart']['chart_type'])
   else:
-    msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+    msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def changecharttype():
-  if path.exists('./settings.ini'):
+  if path.exists('./settings.yml'):
     charttype = input("Type a chart type (bar, plot, dots, step, stem)\n")
     if charttype == 'exit':
       return
+      # panahong walang alam kung pano gamitin ang return na keyword :) jan-feb
     elif charttype not in chart_types:
       msgbox.showerror('Error', f"A chart type \"{charttype}\" doesn't exist.")
     elif charttype == '':
       msgbox.showerror('Error', "Chart type cannot be null.")
     else:
-      config.set('Chart', 'chart_type', charttype)
-      with open('settings.ini', 'w') as settingsfile:
-        config.write(settingsfile)
-        msgbox.showinfo('Success', 'Chart type updated successfully.')
+      yaml['Chart']['chart_type'] = charttype
+      set_data(yaml)  
+      msgbox.showinfo('Success', 'Chart type updated successfully.')
   else:
-    msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+    msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
       
 def isitnonstop():
-  if path.exists('./settings.ini'):
-    isitnonstop = config.get('RPS', 'nonstop')
-    if isitnonstop == 'False':
+  if path.exists('./settings.yml'):
+    isitnonstop = yaml['RPS']['nonstop']
+    if isitnonstop == False:
       print("No")
-    elif isitnonstop == 'True':
+    elif isitnonstop == True:
       print("Yes")
     else:
       print("Unknown")
   else:
-      msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+      msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def resetsettings():
-  if path.exists('./settings.ini'):
+  if path.exists('./settings.yml'):
     confirm = msgbox.askyesno('Reset settings','Are you sure?')
     if confirm == True:
-      config.set('Chart', 'chart_type', 'bar')
-      config.set('Chart', 'datachartcolor', 'dodgerblue')
-      config.set('RPS', 'nonstop', 'False')
-      config.set('Console', 'default_console_color', 'cyan')
-      with open('settings.ini', 'w') as settingsfile:
-        config.write(settingsfile)
-        msgbox.showinfo('Success', 'Settings reset successfully.')
+      yaml['Chart']['chart_type'] = 'bar'
+      yaml['Chart']['datachartcolor'] = 'dodgerblue'
+      yaml['RPS']['nonstop'] = False
+      yaml['Console']['default_console_color'] = 'cyan'
+      set_data(yaml)
+      msgbox.showinfo('Success', 'Settings reset successfully.')
     else:
       return
   else:
-      msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+      msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def changeconsolecolor():
-  if path.exists('./settings.ini'):   
+  if path.exists('./settings.yml'):   
     consolecol = input("Type a color of a console (red, green, blue, white, magenta, cyan, yellow)\n").lower()  
     if consolecol == 'exit':
       return
@@ -181,25 +176,24 @@ def changeconsolecolor():
     elif consolecol == '':
       msgbox.showerror("Error", "Console color cannot be null.")
     else:
-      config.set('Console', 'default_console_color', consolecol)
-      with open('settings.ini', 'w') as settingsfile:
-        config.write(settingsfile)
-        msgbox.showinfo('Success', 'Console color updated successfully.')
-        print("Type and enter \'restart\' to restart and apply changes.")
+      yaml['Console']['default_console_color'] = consolecol
+      set_data(yaml)
+      msgbox.showinfo('Success', 'Console color updated successfully.')
+      print("Restart this program to apply changes.")
       
   else:
-    msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+    msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def currentconsolecolor():
-  if path.exists('./settings.ini'):
-    print(config.get('Console', 'default_console_color'))
+  if path.exists('./settings.yml'):
+    print(yaml['Console']['default_console_color'])
   else:
-    msgbox.showerror("Error", "Couldn\'t find settings.ini file.")
+    msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def datacolorpreview():
   x = ['A','B','C']
   y = [6,4,5]
-  datacolor = config.get('Chart', 'datachartcolor')
+  datacolor = yaml['Chart']['datachartcolor']
   mtp.bar(x, y, color=datacolor)
   mtp.title('Data Color Preview')
   mtp.show()

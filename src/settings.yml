@@ -1,0 +1,7 @@
+Chart:
+  chart_type: bar
+  datachartcolor: '#d7fd90'
+Console:
+  default_console_color: cyan
+RPS:
+  nonstop: true

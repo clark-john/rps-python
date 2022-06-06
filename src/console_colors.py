@@ -1,11 +1,11 @@
-from configparser import ConfigParser
 from colorama import Fore, init
+from yamlparser import get_data
 
 init()
-config = ConfigParser()
-config.read('settings.ini')
 
-consolecolor = config.get('Console', 'default_console_color')
+yaml = get_data()
+
+consolecolor = yaml['Console']['default_console_color']
 
 if consolecolor == 'cyan':
 	consolecolor = Fore.CYAN

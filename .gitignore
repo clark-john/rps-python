@@ -2,7 +2,12 @@
 src/*.txt
 !src/colors.txt
 *.rar
+*.zip
 *.csv
 *.png
 *.swp
+.idea
 changelog.md
+src/*test*
+
+*.bat

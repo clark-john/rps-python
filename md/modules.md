@@ -2,7 +2,6 @@
 
 + os 
 + sys
-+ configparser
 + random
 + datetime
 + _matplotlib_
@@ -17,6 +16,7 @@
 + _pandas_
 + _inquirerpy_
 + webbrowser
++ _pyyaml_
 
 <br>
 Italic: Included in requirements.txt
