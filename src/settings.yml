@@ -1,7 +1,7 @@
 Chart:
   chart_type: bar
-  datachartcolor: '#d7fd90'
+  datachartcolor: dodgerblue
 Console:
   default_console_color: cyan
 RPS:
-  nonstop: true
+  nonstop: false
