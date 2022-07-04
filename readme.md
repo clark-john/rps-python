@@ -32,10 +32,6 @@ Also see [here](./md/modules.md)
 Bonus: Install the required modules by running `pip install -r requirements.txt`.
 Make sure your current working directory in your terminal is the same path as the _requirements.txt_ file.
 
-#### My Python Version:
-
-3.10.4
-
 #### rps-python Latest Version:
 
 v1.0.7

@@ -44,7 +44,7 @@ console_colors = [
 
 def color_list():
   global colors
-  with open('colors.txt', 'r') as f:
+  with open('./src/colors.txt', 'r') as f:
     d = f.readlines()
     colors = []
     for x in d:
@@ -54,7 +54,7 @@ def color_list():
 # Commands
 
 def nonstop_toggle():
-  if path.exists('./settings.yml'):
+  if path.exists('./src/settings.yml'):
     toggle = msgbox.askyesno("Enable Nonstop", "Turn on nonstop?")
     if toggle == True:
       yaml['RPS']['nonstop'] = True
@@ -69,7 +69,7 @@ def nonstop_toggle():
 
 def changedatacolor():
   color_list()
-  if path.exists('./settings.yml'):
+  if path.exists('./src/settings.yml'):
 
     datatype = input("Hex code or color name? (h/n)\n").lower()
 
@@ -107,7 +107,7 @@ def changedatacolor():
     msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def currentdatacolor():
-  if path.exists('./settings.yml'):
+  if path.exists('./src/settings.yml'):
     print(yaml['Chart']['datachartcolor'])
   else:
     msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
@@ -117,13 +117,13 @@ def game():
   
 
 def currentcharttype():
-  if path.exists('./settings.yml'):
+  if path.exists('./src/settings.yml'):
     print(yaml['Chart']['chart_type'])
   else:
     msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def changecharttype():
-  if path.exists('./settings.yml'):
+  if path.exists('./src/settings.yml'):
     charttype = input("Type a chart type (bar, plot, dots, step, stem)\n")
     if charttype == 'exit':
       return
@@ -140,7 +140,7 @@ def changecharttype():
     msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
       
 def isitnonstop():
-  if path.exists('./settings.yml'):
+  if path.exists('./src/settings.yml'):
     isitnonstop = yaml['RPS']['nonstop']
     if isitnonstop == False:
       print("No")
@@ -152,7 +152,7 @@ def isitnonstop():
       msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def resetsettings():
-  if path.exists('./settings.yml'):
+  if path.exists('./src/settings.yml'):
     confirm = msgbox.askyesno('Reset settings','Are you sure?')
     if confirm == True:
       yaml['Chart']['chart_type'] = 'bar'
@@ -167,7 +167,7 @@ def resetsettings():
       msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def changeconsolecolor():
-  if path.exists('./settings.yml'):   
+  if path.exists('./src/settings.yml'):   
     consolecol = input("Type a color of a console (red, green, blue, white, magenta, cyan, yellow)\n").lower()  
     if consolecol == 'exit':
       return
@@ -185,7 +185,7 @@ def changeconsolecolor():
     msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
 
 def currentconsolecolor():
-  if path.exists('./settings.yml'):
+  if path.exists('./src/settings.yml'):
     print(yaml['Console']['default_console_color'])
   else:
     msgbox.showerror("Error", "Couldn\'t find settings.yml file.")
@@ -199,7 +199,7 @@ def datacolorpreview():
   mtp.show()
 
 def clearcache():
-  if path.exists('./__pycache__'):
+  if path.exists('./src/__pycache__'):
     rmtree('__pycache__')
     msgbox.showinfo('Success','Cleared the cache successfully.')
   else:
@@ -215,7 +215,7 @@ def clearscore():
     msgbox.showinfo('Clear score', 'Already cleared the scores.')
 
 def showcolorlist():
-  with open('colors.txt', 'r') as colors:
+  with open('./src/colors.txt', 'r') as colors:
     print(colors.read())
 
 def screenshot():
@@ -225,7 +225,7 @@ def screenshot():
     sleep(1)
     ss -= 1
   image = grab()
-  image.save('Screenshot.png')
+  image.save('./src/Screenshot.png')
   print("Screenshot done")
 
 def repolink():

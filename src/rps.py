@@ -102,7 +102,7 @@ def play():
     elif total_games >= 2 or total_games == 0:
       print(white+"You played",total_games,"games.\n"+consolecolor)
 
-    with open('score.csv', 'w', newline='') as score: 
+    with open('./src/score.csv', 'w', newline='') as score: 
       w = writer(score)            
       date = [dateasstr]
       wins = ['Wins', user_score]
@@ -126,7 +126,7 @@ def play():
         mtp.bar(userscores, compscores, color=datacolor)
         mtp.title('Your RPS Scoreboard')
         print(success+"As of", dateasstr + consolecolor)
-        mtp.savefig('score.png')
+        mtp.savefig('./src/score.png')
         mtp.show()
         print("Thanks for playing! :)")
         sleep(3)
@@ -136,7 +136,7 @@ def play():
         mtp.plot(userscores, compscores, marker='o', color=datacolor)
         mtp.title('Your RPS Scoreboard')
         print(success+"As of", dateasstr + consolecolor)
-        mtp.savefig('score.png')
+        mtp.savefig('./src/score.png')
         mtp.show()
         print("Thanks for playing! :)")
         sleep(3)
@@ -146,7 +146,7 @@ def play():
         mtp.scatter(userscores, compscores, color=datacolor, s=[280,140,200])
         mtp.title('Your RPS Scoreboard')
         print(success+"As of", dateasstr + consolecolor)
-        mtp.savefig('score.png')
+        mtp.savefig('./src/score.png')
         mtp.show()
         print("Thanks for playing! :)")
         sleep(3)
@@ -156,7 +156,7 @@ def play():
         mtp.stem(userscores, compscores, markerfmt='o')
         mtp.title('Your RPS Scoreboard')
         print(success+"As of", dateasstr + consolecolor)
-        mtp.savefig('score.png')
+        mtp.savefig('./src/score.png')
         mtp.show()
         print("Thanks for playing! :)")
         sleep(3)
@@ -166,7 +166,7 @@ def play():
         mtp.step(userscores, compscores, color=datacolor)
         mtp.title('Your RPS Scoreboard')
         print(success+"As of", dateasstr + consolecolor)
-        mtp.savefig('score.png')
+        mtp.savefig('./src/score.png')
         mtp.show()
         print("Thanks for playing! :)")
         sleep(3)
@@ -182,7 +182,7 @@ def play():
       print(df)
       print('\n'+success+"As of", dateasstr + consolecolor)
       dfasstr = str(df)
-      with open('score.txt', 'w') as y:
+      with open('./src/score.txt', 'w') as y:
         y.write(dfasstr)
       print("Thanks for playing! :)")
       sleep(3)

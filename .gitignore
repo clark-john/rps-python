@@ -8,6 +8,7 @@ src/*.txt
 *.swp
 .idea
 changelog.md
+bulkren.py
 src/*test*
 
 *.bat
