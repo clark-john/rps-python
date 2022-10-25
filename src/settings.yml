@@ -2,6 +2,6 @@ Chart:
   chart_type: bar
   datachartcolor: dodgerblue
 Console:
-  default_console_color: cyan
+  default_console_color: white
 RPS:
   nonstop: false

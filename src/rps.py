@@ -59,7 +59,7 @@ def play():
       "message": "Plot scoreboard with?",
       "choices": [
         'matplotlib',
-        'pandas'
+        'pandas (dataframe)'
       ]
     }
 
